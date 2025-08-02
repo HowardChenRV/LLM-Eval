@@ -104,3 +104,48 @@ Note:
 - The build script requires Python 3.10+
 - Make sure all dependencies are installed before building
 - The executable is built for Windows but can be created on macOS/Linux using Wine
+
+## Development Guide
+
+### How to Add a New Benchmark
+
+To add a new benchmark, you need to complete the following steps:
+
+1. Create a new benchmark directory under `llm_eval/benchmarks/`, for example `my_new_benchmark/`
+2. Implement your benchmark logic in that directory, referencing existing implementations like `llm_eval/benchmarks/serving_perf_eval/`
+3. Create a corresponding CLI command file under `llm_eval/cli/`, for example `my_new_benchmark.py`
+4. In the CLI command file:
+   - Define argument parsing function `add_argument(parser)`
+   - Create a command class inheriting from `CLICommand` and implement `define_args` and `execute` methods
+   - Use `@dataclass` to define benchmark configuration parameters
+5. Register your new command in `llm_eval/cli/main.py`:
+   - Import your command class: `from llm_eval.cli.my_new_benchmark import MyNewBenchmarkCMD`
+   - Add in the `run_command` function: `MyNewBenchmarkCMD.define_args(subparsers)`
+6. Ensure your benchmark implementation correctly uses the `ConfigManager` for configuration handling
+
+### How to Add a New API
+
+To add a new API, you need to complete the following steps:
+
+1. Create a new API implementation file under `llm_eval/apis/`, for example `my_new_api.py`
+2. Inherit from the `ApiBase` base class and implement the required methods:
+   - `create_request_input`: Create request input object
+   - `build_request`: Build HTTP request
+   - `parse_responses`: Parse server responses
+3. Define a data class inheriting from `RequestFuncInput` containing parameters specific to your API
+4. Register your API using the `@register_api("api_name")` decorator
+5. Import your API module in the CLI command file that uses it to ensure proper registration
+6. Refer to existing implementations like `llm_eval/apis/openai_api.py` or `llm_eval/apis/lenovo_api.py`
+
+### How to Add a New Dataset
+
+To add a new dataset, you need to complete the following steps:
+
+1. Create a new dataset implementation file under `llm_eval/datasets/`, for example `my_new_dataset.py`
+2. Inherit from the `DatasetBase` base class and implement the required methods:
+   - `load`: Static method for loading the dataset
+   - `perf_req_generator`: Method for generating performance test requests (optional, if customization is needed)
+3. Register your dataset using the `@register_dataset("dataset_name")` decorator
+4. In your dataset implementation, ensure proper data format handling and return a list of `PerfReq` objects
+5. Import your dataset module in the CLI command file that uses it to ensure proper registration
+6. Refer to existing implementations like `llm_eval/datasets/random.py` or `llm_eval/datasets/sharegpt.py`
