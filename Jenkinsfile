@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         // Harbor 配置
-        HARBOR_REGISTRY = 'harbor.llm-ai.com'
-        HARBOR_PROJECT = 'qa'
+        HARBOR_REGISTRY = 'harbor.xxx.com'
+        HARBOR_PROJECT = 'xxx'
         IMAGE_NAME = 'llm-eval'
         FULL_IMAGE_NAME = "${HARBOR_REGISTRY}/${HARBOR_PROJECT}/${IMAGE_NAME}"
         

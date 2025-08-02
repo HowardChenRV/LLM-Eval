@@ -7,7 +7,7 @@ from llm_eval.utils.registry import dataset_registry, api_registry
 from llm_eval.utils.http_client import HttpClient, ApiBase
 from llm_eval.utils.report_task import ReportTask
 from llm_eval.utils.wandb_task import WandbTask
-from data_store.client import TestType
+from llm_eval.data_store.client import TestType
 from llm_eval.metrics.serving_perf_eval_metrics import InferencePerformanceProcess
 from .process_lenovo_perf_results import process_results
 

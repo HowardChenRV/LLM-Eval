@@ -135,7 +135,7 @@ def do_setup():
         description='LLM-Eval: MxN Evaluation Framework',
         long_description=open('README.md').read(),
         long_description_content_type='text/markdown',
-        url='https://gitlab.llm-ai.com/qa/llm-eval',
+        url='https://github.com/HowardChenRV/LLM-Eval.git',
         packages=find_packages(exclude=('examples', 'tests*')),
         # cmdclass={
         #     'install': CustomInstall,

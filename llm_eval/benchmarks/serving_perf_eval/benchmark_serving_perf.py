@@ -13,7 +13,7 @@ from llm_eval.apis.base_api import ApiBase
 from llm_eval.metrics.serving_perf_eval_metrics import InferenceServingPerformanceTags, InferencePerformanceProcess, InferenceServingPerformanceSummary
 from llm_eval.utils.report_task import ReportTask
 from llm_eval.utils.wandb_task import WandbTask
-from data_store.client import TestType
+from llm_eval.data_store.client import TestType
 from .save_perf_data import save_result_to_excel, save_process_data_to_json
 from llm_eval.datasets.local import CustomBodyDataset
 import wandb

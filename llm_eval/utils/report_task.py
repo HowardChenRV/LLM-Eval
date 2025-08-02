@@ -1,4 +1,4 @@
-from data_store.client import DataClient, generate_task_id, TestType
+from llm_eval.data_store.client import DataClient, generate_task_id, TestType
 from omegaconf import OmegaConf, DictConfig
 from functools import wraps
 from dataclasses import dataclass, asdict

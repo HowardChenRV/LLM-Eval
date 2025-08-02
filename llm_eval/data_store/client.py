@@ -10,9 +10,9 @@ from kafka import KafkaProducer
 from kafka.producer.future import FutureRecordMetadata
 from pydantic import validate_call
 
-from data_store.const import *
-from data_store.models import *
-from data_store.utils import *
+from .const import *
+from .models import *
+from .utils import *
 
 logger = logging.getLogger(__name__)
 

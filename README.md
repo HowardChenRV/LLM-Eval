@@ -2,7 +2,7 @@
 ### Install from Source
 1. Download the source code
    ```shell
-   git clone https://gitlab.llm-ai.com/qa/LLM-Eval.git
+   git clone https://github.com/HowardChenRV/LLM-Eval.git
    ```
 
 2. Create a conda environment (optional)

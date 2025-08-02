@@ -1,6 +1,6 @@
 import uuid
 
-from data_store.models import TestType
+from .models import TestType
 
 
 def generate_task_id(test_type: TestType) -> str:

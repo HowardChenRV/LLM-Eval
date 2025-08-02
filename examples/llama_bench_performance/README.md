@@ -16,7 +16,7 @@ llama-bench-test 是一个自动化测试工具，用于运行 llama-bench 性�
 ## 使用说明
 
 ### 运行环境
-windows AIPC，参考文档：https://llmgence.feishu.cn/wiki/B37gwFMcAijz7FkC8MHcNlSbn2e
+windows AIPC，参考文档 xxx
 
 ### 依赖安装
 
