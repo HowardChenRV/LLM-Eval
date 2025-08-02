@@ -1,0 +1,37 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: https://qa.cloud-dev.llm-ai.com:9443/maas/v1/chat/completions
+model: megrez-3b-instruct
+tokenizer: /Users/howardchen/Megrez-3B-Instruct
+api_key: sk-i5qhpbyd2otunghy
+temperature: 0.7
+stream: False
+extra_headers:
+  x-llm-env: "6"
+
+# Dataset config
+dataset_name: local
+dataset_path: /Users/howardchen/Downloads/内部稳定性预演数据集/a-500-2000.jsonl
+num_prompts: 1000
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 100
+request_rate_list: 
+  - -1
+save_data: True
+
+test_meta:
+  tester: chenyonghua
+  hardware: RTX4090-24G
+  hardware_num: 1
+  model: Megrez-3b-Instruct
+  quantization_method: default
+  model_source: OPEN
+  framework: vllm-nvidia
+  framework_version: v3.8.4
+  test_source: TEST
+  # other labels
+  cluster: 1实例

@@ -1,0 +1,20 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: https://cloud.llm-ai.com/maas/v1/chat/completions
+model: deepseek-r1-cyh-priority
+tokenizer: /Users/howardchen/DeepSeek-R1
+api_key: sk-das5tysnwiphukwp
+
+# Dataset config
+dataset_name: custom
+dataset_path: /Users/howardchen/Dev/QA/LLM-Eval/scripts/custom_dataset/tencent_yuanbao_deepseek_r1_20250307_num_651.jsonl
+num_prompts: 651
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 40
+request_rate_list: 
+  - -1
+save_data: True

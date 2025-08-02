@@ -1,0 +1,28 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: http://if-dadylk7ll36tdags-service:80/v1/chat/completions
+model: qwen1.5-72b-chat-lp
+tokenizer: /mnt/public/Qwen_Qwen1.5-72B-Chat
+
+# Dataset config
+dataset_name: local
+dataset_path: /root/llm-perf/inference/dataset/serving_dataset/maas/maas_dataset.json
+num_prompts: 1000
+
+# Generation config
+temperature: 0.0
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 8
+  - 16
+  - 32
+  - 64
+  - 128
+  - 256
+  - 512
+request_rate_list: 
+  - -1
+save_data: True

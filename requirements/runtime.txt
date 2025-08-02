@@ -1,0 +1,25 @@
+# general
+omegaconf==2.3.0
+openpyxl==3.1.5
+resource==0.2.1
+transformers==4.51.2
+requests
+torch
+faker
+# high concurrency for serving perf
+aiohttp==3.10.10
+asyncio==3.4.3
+tqdm==4.66.5
+# metrics report
+wandb==0.21.0
+# datasets
+datasets==3.0.1
+modelscope==1.19.2
+oss2==2.19.1
+addict==2.4.0
+# data store
+kafka-python==2.2.11
+pydantic==2.11.5
+# for kimi K2
+tiktoken
+blobfile

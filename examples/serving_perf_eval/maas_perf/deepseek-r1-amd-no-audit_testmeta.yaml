@@ -1,0 +1,12 @@
+tester: chenyonghua
+hardware: MI210-64G
+hardware_num: 32
+model: DeepSeek-R1
+quantization_method: default
+model_source: OPEN
+framework: vllm
+framework_version: 0.7.3.dev0+g0408efc6.d20250209.rocm631
+test_source: TEST
+# other labels
+cluster: 2 instance
+

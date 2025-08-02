@@ -1,0 +1,20 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: https://cloud.llm-ai.com/maas/deployment/mif-da77hrkp5d4jt2ho/chat/completions
+model: mif-da77hrkp5d4jt2ho
+tokenizer: /Users/howardchen/Qwen2.5-7B-Instruct
+api_key: sk-c76qoz6s2ck57rqc
+
+# Dataset config
+dataset_name: local
+dataset_path: /Users/howardchen/Downloads/mock_data_Qwen_history_ad6c6fde6f4d4ddc9bf9fe6473cf1679.jsonl
+num_prompts: 1999
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 60
+request_rate_list: 
+  - -1
+save_data: True

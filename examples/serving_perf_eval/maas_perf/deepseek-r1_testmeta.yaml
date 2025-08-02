@@ -1,0 +1,12 @@
+tester: chenyonghua
+hardware: H800-80G
+hardware_num: 16
+model: DeepSeek-R1
+quantization_method: default
+model_source: OPEN
+framework: sglang
+framework_version: 0.4.2.post2
+test_source: TEST
+# other labels
+cluster: 4 instance
+

@@ -1,0 +1,11 @@
+tester: chenyonghua
+hardware: MI210-64G
+hardware_num: 4
+model: Qwen1.5-72B-Chat
+quantization_method: default
+model_source: OPEN
+framework: vllm-amd
+framework_version: v1
+test_source: TEST
+# other labels
+cluster: 4 instance

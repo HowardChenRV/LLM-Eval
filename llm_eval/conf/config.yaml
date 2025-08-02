@@ -1,0 +1,35 @@
+default:
+  metrics:
+    enable_report: False
+    kafka:
+      host: localhost
+      port: 9094
+    wandb:
+      wandb_base_url: https://aurora-wandb.llm-ai.com
+      wandb_api_key: local-0fdbefea94d8edeb5382c1c6710d4cc72ba93a9a
+      wandb_entity: llm-perf
+      wandb_api_timeout: "60"
+      wandb_run_timeout: "300"
+      wandb_init_timeout: "120"
+  logging:
+    enable_save: False
+    level: INFO
+    log_dir: logs
+    
+
+# Inherit from default.
+development:
+  logging:
+    enable_save: True
+    level: DEBUG
+
+
+# Inherit from default.
+production:
+  metrics:
+    enable_report: True
+    kafka:
+      host: 8.140.201.231
+  logging:
+    enable_save: True
+

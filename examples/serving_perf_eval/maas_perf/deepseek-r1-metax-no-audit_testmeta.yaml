@@ -1,0 +1,12 @@
+tester: chenyonghua
+hardware: C550-64G
+hardware_num: 32
+model: DeepSeek-R1
+quantization_method: default
+model_source: OPEN
+framework: vllm
+framework_version: 0.6.6_dev
+test_source: TEST
+# other labels
+cluster: single instance
+

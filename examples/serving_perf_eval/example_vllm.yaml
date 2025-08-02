@@ -1,0 +1,30 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: VLLM
+url: http://127.0.0.1:8000/v1/chat/completions
+api_key: ""
+model: /share/datasets/public_models/Meta-Llama-3-8B-Instruct
+tokenizer: /share/datasets/public_models/Meta-Llama-3-8B-Instruct
+
+# Dataset config
+dataset_name: sharegpt
+dataset_path: /share/datasets/tmp_share/chenyonghua/datasets/sharegpt/ShareGPT_V3_unfiltered_cleaned_split.json
+num_prompts: 1000
+prompt: ""
+
+# Generation config
+max_completion_tokens: null
+temperature: 0.0
+top_p: null
+ignore_eos: True
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency: 1
+request_rate: inf
+request_rate_list: 
+  - 8
+  - 16
+  - 32
+  - inf
+save_data: False

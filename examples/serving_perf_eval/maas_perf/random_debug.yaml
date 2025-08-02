@@ -1,0 +1,45 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: maas
+url: https://cloud.llm-ai.com/maas/v1/chat/completions
+model: kimi-k2-instruct
+tokenizer: /Users/howardchen/models/Qwen2.5-3B-Instruct
+api_key: sk-das5tysnwiphukwp
+
+# Dataset config
+dataset_name: random
+random_input_len: 512
+random_output_len: 64
+random_range_ratio: 0.6
+random_prefix_len: 128
+num_prompts: 10
+
+# Perf test config
+perf_test_type: multiple
+concurrency_list:
+  - 10
+request_rate_list: 
+  - -1
+save_data: True
+
+extra_headers:
+  x-llm-env: ""
+
+extra_args:
+  max_completion_tokens: 128
+  temperature: 0.0
+  ignore_eos: True
+  stream: True
+
+test_meta:
+  tester: chenyonghua
+  hardware: RTX4090-24G
+  hardware_num: 1
+  model: Megrez-3b-Instruct
+  quantization_method: default
+  model_source: OPEN
+  framework: vllm-nvidia
+  framework_version: v3.8.4
+  test_source: TEST
+  # other labels
+  cluster: 1实例

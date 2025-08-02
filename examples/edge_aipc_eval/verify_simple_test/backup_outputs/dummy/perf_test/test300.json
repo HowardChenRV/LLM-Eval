@@ -1,0 +1,52 @@
+{
+    "0": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：A statement said \"several main locations of the wreckage\" had been identified.\nA deep sea search vessel had also sent back the first images of the wreckage, the statement added.\nThere were 66 people on board flight MS804 when it crashed on 19 May while flying from Paris to Cairo.\nThe Airbus A320 plane vanished from Greek and Egyptian radar screens, apparently without having sent a distress call.\nWhat do we know so far?\nWho were the victims?\nEarlier this month, search teams said signals from one of the \"black box\" flight recorders had been detected.\nSignals emitted by the recorders are expected to expire by 24 June, experts have warned.\nThe cause of the crash remains a mystery.\nA terror attack has not been ruled out but no extremist group has claimed the downing of the plane.\nAccording to Greek investigators, the plane turned 90 degrees left and then 360 degrees to the right, dropping from 11,300m (37,000ft) to 4,600m (15,000ft) and then 3,000m (10,000ft) before it was lost from radar.\nBased on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "The cause of the crash remains a mystery, but experts have warned that signals emitted by the flight recorders are expected to expire by 24 June.",
+        "response_time": 9.14
+    },
+    "1": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Media playback is not supported on this device\nWednesday's match in Lyon will be Wales' first in the last four of a major tournament.\nColeman hopes Wales, appearing at a first competition since the 1958 World Cup, will become regular qualifiers.\n\"People think the end of this tournament is the end of this journey, but it's not,\" he said.\n\"It's part of the journey. The experience this group of boys will get from this, they'll be here long after I'm here. This success is part of the learning process.\n\"When I looked at the group we were in the tournament, I thought we were capable of getting out of the group.\n\"You never know who you'll get in the last 16, and then the quarter-final. I thought that was a possibility. I told the players that, that I genuinely believed we arrive at that stage.\n\"I didn't know what would happen after that, if I'm honest. But we've got a good team.\"\n Based on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Wales manager Chris Coleman has said that his team's quarter-final match against Belgium in the European Championship is just part of their journey and they will continue to qualify for major tournaments.",
+        "response_time": 9.19
+    },
+    "2": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Once upon a time, in a small village surrounded by dense forests, there was a forgotten garden. One sunny afternoon, a curious girl named Emma stumbled upon it. As she entered, the flowers seemed to wake up and sway gently, their petals glowing with a magical light. Emma saw a tiny fairy with wings shimmering like rainbows. The fairy, named Lila, explained that the garden had lost its magic due to neglect. Emma promised to visit daily and care for it. Soon, the garden flourished again, bringing joy to the entire village. In return, Lila granted Emma the ability to understand the language of flowers, making her the happiest girl in the world.\n Based on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "A curious girl named Emma discovers a forgotten garden surrounded by dense forests. She meets a tiny fairy named Lila who explains that the garden has lost its magic due to neglect. Emma promises to visit daily and care for it, and soon the garden flourishes again, bringing joy to the entire village. In return, Lila grants Emma the ability to understand the language of flowers, making her the happiest girl in the world.",
+        "response_time": 14.69
+    },
+    "3": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：In a coastal village, young Mia loved listening to the ocean's whispers. One evening, the wind carried an unusual melody that led her to a secluded cave. Inside, she discovered an ancient, dusty violin. As she played it, the village transformed into a vibrant carnival under the moonlight. The villagers, who had forgotten how to dance and dream, were enchanted. A mysterious figure appeared—an old violinist who had once performed there long ago. He revealed that the violin held the power to bring joy and unity. Mia continued to play, and the village thrived, its spirit forever renewed by the magic of music and the whispering wind.\n Based on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Mia discovers an ancient violin in a cave and playing it transforms her coastal village into a vibrant carnival, bringing joy and unity to the villagers.",
+        "response_time": 7.89
+    },
+    "4": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Tom was a diligent postman in a quaint town. One rainy day, he found a sealed letter with no return address, addressed to \"The Person Who Believes in Miracles.\" Unsure what to do, Tom decided to deliver it to the oldest person in the town, Mrs. Clarke, who was known for her stories of magic. When Mrs. Clarke opened the letter, it contained a key and a note saying, \"Your heart's desire awaits at the old treehouse.\" Intrigued, she and Tom ventured out. They found a hidden treasure chest filled with books and trinkets. It was a gift from her late husband, who believed in her dream of opening a library. With Tom's help, Mrs. Clarke's dream finally came true.\n Based on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Tom delivered a mysterious letter to Mrs. Clarke, who found it contained a key and note leading to a hidden treasure chest filled with books and trinkets that belonged to her late husband. With Tom's help, she was able to turn her dream of opening a library into reality.",
+        "response_time": 11.48
+    }
+}

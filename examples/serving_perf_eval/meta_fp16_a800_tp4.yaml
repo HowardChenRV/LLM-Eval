@@ -1,0 +1,13 @@
+tester: chenyonghua
+hardware: A800-80G
+hardware_num: 4
+model: Qwen1.5-72B-Chat
+quantization_method: default
+model_source: OPEN
+framework: alioth-nvidia
+framework_version: v0.1
+test_source: TEST
+# other labels
+cluster: single instance
+mml: 32768
+blocks: 3000

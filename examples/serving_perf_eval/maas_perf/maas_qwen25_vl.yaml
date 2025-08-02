@@ -1,0 +1,48 @@
+benchmark_name: serving_perf_eval
+# Inference server config
+backend: maas
+url: https://cloud.llm-ai.com/maas/v1/chat/completions
+model: qwen2.5-vl-32b-instruct
+tokenizer: /Users/chenyonghua/Documents/models/Qwen_Qwen2.5-VL-32B-Instruct
+api_key: sk-das5tysnwiphukwp
+
+# Dataset config
+dataset_name: mmbench_cn
+dataset_path:
+#dataset_path: /Users/chenyonghua/WorkSpace/code/correctm/MMBench_CN_test_4636_custom.jsonl
+num_prompts: 4000
+
+# Perf test config
+perf_test_type: multiple
+concurrency_list:
+   - 8
+#   - 16
+#   - 32
+#   - 64
+#   - 128
+#   - 256
+request_rate_list:
+  - -1
+save_data: True
+
+extra_headers:
+  x-llm-env: ""
+
+extra_args:
+  max_completion_tokens: 10
+  temperature: 0.0
+  ignore_eos: True
+  stream: True
+
+test_meta:
+  tester: chenyonghua
+  hardware: H100-80G
+  hardware_num: 2
+  model: Qwen2.5-VL-32B-Instruct
+  quantization_method: default
+  model_source: OPEN
+  framework: vllm-maas
+  framework_version: v0.8.5.release.v0
+  test_source: TEST
+  # other labels
+  cluster: 1 instance

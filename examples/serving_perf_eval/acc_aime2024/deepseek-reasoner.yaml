@@ -1,0 +1,20 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: https://api.deepseek.com/v1/chat/completions
+model: deepseek-reasoner
+tokenizer: /Users/howardchen/DeepSeek-R1
+api_key: sk-a69cedffc8db496cb6ece780ee89b28c
+
+# Dataset config
+dataset_name: aime_2024
+num_prompts: 30
+temperature: 0.6
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 1
+request_rate_list: 
+  - -1
+save_data: True

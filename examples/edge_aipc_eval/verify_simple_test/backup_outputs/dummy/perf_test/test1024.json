@@ -1,0 +1,52 @@
+{
+    "0": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Voges was forced to retire hurt on 86 after suffering the injury while batting during the County Championship draw with Somerset on 4 June.\nMiddlesex hope to have the Australian back for their T20 Blast game against Hampshire at Lord's on 3 August.\nThe 37-year-old has scored 230 runs in four first-class games this season at an average of 57.50.\n\"Losing Adam is naturally a blow as he contributes significantly to everything we do,\" director of cricket Angus Fraser said.\n\"His absence, however, does give opportunities to other players who are desperate to play in the first XI.\n\"In the past we have coped well without an overseas player and I expect us to do so now.\"\nDefending county champions Middlesex are sixth in the Division One table, having drawn all four of their matches this season.\nVoges retired from international cricket in February with a Test batting average of 61.87 from 31 innings, second only to Australian great Sir Donald Bradman's career average of 99.94 from 52 Tests.\nBased on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Middlesex batsman Adam Voges has been ruled out for the rest of the season after suffering a torn hamstring while batting against Somerset in the County Championship.",
+        "response_time": 9.47
+    },
+    "1": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Voges was forced to retire hurt on 86 after suffering the injury while batting during the County Championship draw with Somerset on 4 June.\nMiddlesex hope to have the Australian back for their T20 Blast game against Hampshire at Lord's on 3 August.\nThe 37-year-old has scored 230 runs in four first-class games this season at an average of 57.50.\n\"Losing Adam is naturally a blow as he contributes significantly to everything we do,\" director of cricket Angus Fraser said.\n\"His absence, however, does give opportunities to other players who are desperate to play in the first XI.\n\"In the past we have coped well without an overseas player and I expect us to do so now.\"\nDefending county champions Middlesex are sixth in the Division One table, having drawn all four of their matches this season.\nVoges retired from international cricket in February with a Test batting average of 61.87 from 31 innings, second only to Australian great Sir Donald Bradman's career average of 99.94 from 52 Tests.\nBased on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Middlesex batsman Adam Voges has been ruled out of the remainder of the County Championship season with a shoulder injury.",
+        "response_time": 8.54
+    },
+    "2": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Voges was forced to retire hurt on 86 after suffering the injury while batting during the County Championship draw with Somerset on 4 June.\nMiddlesex hope to have the Australian back for their T20 Blast game against Hampshire at Lord's on 3 August.\nThe 37-year-old has scored 230 runs in four first-class games this season at an average of 57.50.\n\"Losing Adam is naturally a blow as he contributes significantly to everything we do,\" director of cricket Angus Fraser said.\n\"His absence, however, does give opportunities to other players who are desperate to play in the first XI.\n\"In the past we have coped well without an overseas player and I expect us to do so now.\"\nDefending county champions Middlesex are sixth in the Division One table, having drawn all four of their matches this season.\nVoges retired from international cricket in February with a Test batting average of 61.87 from 31 innings, second only to Australian great Sir Donald Bradman's career average of 99.94 from 52 Tests.\nBased on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Middlesex batsman Adam Voges has been ruled out for the rest of the season with a back injury.",
+        "response_time": 8.03
+    },
+    "3": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Voges was forced to retire hurt on 86 after suffering the injury while batting during the County Championship draw with Somerset on 4 June.\nMiddlesex hope to have the Australian back for their T20 Blast game against Hampshire at Lord's on 3 August.\nThe 37-year-old has scored 230 runs in four first-class games this season at an average of 57.50.\n\"Losing Adam is naturally a blow as he contributes significantly to everything we do,\" director of cricket Angus Fraser said.\n\"His absence, however, does give opportunities to other players who are desperate to play in the first XI.\n\"In the past we have coped well without an overseas player and I expect us to do so now.\"\nDefending county champions Middlesex are sixth in the Division One table, having drawn all four of their matches this season.\nVoges retired from international cricket in February with a Test batting average of 61.87 from 31 innings, second only to Australian great Sir Donald Bradman's career average of 99.94 from 52 Tests.\nBased on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Middlesex batsman Adam Voges has been ruled out of the rest of the County Championship season after suffering a calf injury during their draw with Somerset.",
+        "response_time": 9.31
+    },
+    "4": {
+        "origin_prompt": [
+            {
+                "role": "HUMAN",
+                "prompt": "Document：Voges was forced to retire hurt on 86 after suffering the injury while batting during the County Championship draw with Somerset on 4 June.\nMiddlesex hope to have the Australian back for their T20 Blast game against Hampshire at Lord's on 3 August.\nThe 37-year-old has scored 230 runs in four first-class games this season at an average of 57.50.\n\"Losing Adam is naturally a blow as he contributes significantly to everything we do,\" director of cricket Angus Fraser said.\n\"His absence, however, does give opportunities to other players who are desperate to play in the first XI.\n\"In the past we have coped well without an overseas player and I expect us to do so now.\"\nDefending county champions Middlesex are sixth in the Division One table, having drawn all four of their matches this season.\nVoges retired from international cricket in February with a Test batting average of 61.87 from 31 innings, second only to Australian great Sir Donald Bradman's career average of 99.94 from 52 Tests.\nBased on the previous text, provide a brief single summary:"
+            }
+        ],
+        "prediction": "Middlesex batsman Adam Voges has been ruled out of the rest of the County Championship season after suffering a calf injury during their draw with Somerset.",
+        "response_time": 9.16
+    }
+}

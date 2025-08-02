@@ -1,0 +1,12 @@
+tester: chenyonghua
+hardware: H200-141G
+hardware_num: 8
+model: DeepSeek-V3
+quantization_method: default
+model_source: OPEN
+framework: sglang-maas
+framework_version: v0.4.3.post2.v3
+test_source: TEST
+# other labels
+cluster: 2 instance
+

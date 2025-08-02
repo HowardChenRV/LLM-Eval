@@ -1,0 +1,192 @@
+version: '3.3'
+services:
+  kafka:
+    image: bitnami/kafka:3.4.1
+    container_name: kafka
+    restart: unless-stopped
+    networks:
+      - dev-network
+    ports:
+      - "9094:9094"
+    volumes:
+      - ./kafka/data:/bitnami/kafka
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_BROKER_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9094,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9094
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@:9093
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:master
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - DYNAMIC_CONFIG_ENABLED=true
+    networks:
+      - dev-network
+
+  mongo:
+    image: mongodb/mongodb-community-server:7.0-ubi8
+    container_name: mongo
+    restart: unless-stopped
+    networks:
+      - dev-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=test
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo/data:/data/db
+      - ./mongo/config:/data/configdb
+    logging:
+      options:
+        max-size: 1g
+
+  mongo-express:
+    image: mongo-express:1.0.2-20
+    container_name: mongo-express
+    restart: unless-stopped
+    networks:
+      - dev-network
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=admin
+      - ME_CONFIG_BASICAUTH=false
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    restart: unless-stopped
+    networks:
+      - dev-network
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influx/data:/var/lib/influxdb2
+      - ./influx/config:/etc/influxdb2
+
+  chronograf:
+    image: chronograf:1.10
+    container_name: chronograf
+    restart: unless-stopped
+    networks:
+      - dev-network
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./chronograf/data:/var/lib/chronograf
+    depends_on:
+      - influxdb
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+
+  grafana:
+    image: grafana/grafana:10.4.1
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - dev-network
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+
+  #  elasticsearch:
+  #    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
+  #    container_name: elastic
+  #    restart: unless-stopped
+  #    environment:
+  #      - discovery.type=single-node
+  #      - xpack.security.enabled=true
+  #    ports:
+  #      - "9200:9200"
+  #      - "9300:9300"
+  #    networks:
+  #      - dev-network
+  #    volumes:
+  #      - ./elasticsearch/data:/usr/share/elasticsearch/data
+  #
+  #  kibana:
+  #    image: docker.elastic.co/kibana/kibana:8.13.0
+  #    container_name: kibana
+  #    restart: unless-stopped
+  #    ports:
+  #      - "5601:5601"
+  #    depends_on:
+  #      - elasticsearch
+  #    environment:
+  #      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+  #    networks:
+  #      - dev-network
+
+  nifi:
+    image: apache/nifi:1.25.0
+    container_name: nifi
+    restart: unless-stopped
+    ports:
+      - "8443:8443"
+    environment:
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=a12345678910
+      - NIFI_WEB_HTTP_PORT=8443
+    networks:
+      - dev-network
+    volumes:
+      - nifi-conf:/opt/nifi/nifi-current/conf
+      - ./nifi/database_repository:/opt/nifi/nifi-current/database_repository
+      - ./nifi/flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+      - ./nifi/content_repository:/opt/nifi/nifi-current/content_repository
+      - ./nifi/provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - ./nifi/state:/opt/nifi/nifi-current/state
+      - ./nifi/logs:/opt/nifi/nifi-current/logs
+      - ./nifi/lib/nifi-influx-database-nar-1.28.0.nar:/opt/nifi/nifi-current/lib/nifi-influx-database-nar-1.28.0.nar
+
+#  clickhouse:
+#    image: clickhouse/clickhouse-server:24-alpine
+#    container_name: clickhouse
+#    restart: unless-stopped
+#    ports:
+#      - "8123:8123"
+#      - "9000:9000"
+#    ulimits:
+#      nproc: 65535
+#      nofile:
+#        soft: 262144
+#        hard: 262144
+#    networks:
+#      - dev-network
+#    volumes:
+#      - ./clickhouse/data:/var/lib/clickhouse/
+#      - ./clickhouse/logs:/var/log/clickhouse-server/
+
+networks:
+  dev-network:
+    driver: bridge
+
+volumes:
+  nifi-conf:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./nifi/conf

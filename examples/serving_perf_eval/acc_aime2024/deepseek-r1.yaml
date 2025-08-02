@@ -1,0 +1,20 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: https://cloud.llm-ai.com/maas/v1/chat/completions
+model: deepseek-r1
+tokenizer: /Users/howardchen/DeepSeek-R1
+api_key: sk-das5tysnwiphukwp
+
+# Dataset config
+dataset_name: aime_2024
+num_prompts: 30
+temperature: 0.6
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 30
+request_rate_list: 
+  - -1
+save_data: True

@@ -1,0 +1,30 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: https://cloud.llm-ai.com/maas/v1/chat/completions
+model: deepseek-r1-perftest
+tokenizer: /Users/howardchen/DeepSeek-R1
+api_key: sk-das5tysnwiphukwp
+
+# Dataset config
+dataset_name: custom
+dataset_path: /Users/howardchen/Dev/QA/LLM-Eval/scripts/custom_dataset/tencent_yuanbao_deepseek_r1_20250307_num_651.jsonl
+num_prompts: 651
+# dataset_name: sharegpt
+# num_prompts: 4000
+
+# Generation config
+temperature: 0.0
+ignore_eos: True
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 200
+  - 250
+  - 300
+  - 350
+  - 400
+request_rate_list: 
+  - -1
+save_data: True

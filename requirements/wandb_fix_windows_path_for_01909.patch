@@ -1,0 +1,40 @@
+diff --git a/wandb/sdk/wandb_settings.py b/wandb/sdk/wandb_settings.py
+index 8d885bf5c..71fec1ad1 100644
+--- a/wandb/sdk/wandb_settings.py
++++ b/wandb/sdk/wandb_settings.py
+@@ -1661,6 +1661,11 @@ class Settings(BaseModel, validate_assignment=True):
+         root = root or os.getcwd()
+         if not root:
+             return None
++        
++        # For windows if the root and program are on different drives,
++        # os.path.relpath will raise a ValueError.
++        if not util.are_paths_on_same_drive(root, program):
++            return None
+ 
+         full_path_to_program = os.path.join(
+             root, os.path.relpath(os.getcwd(), root), program
+diff --git a/wandb/util.py b/wandb/util.py
+index 38e25651a..a856bd8e5 100644
+--- a/wandb/util.py
++++ b/wandb/util.py
+@@ -1438,6 +1438,19 @@ def auto_project_name(program: Optional[str]) -> str:
+     return str(project.replace(os.sep, "_"))
+ 
+ 
++def are_paths_on_same_drive(path1: str, path2: str) -> bool:
++    """Check if two paths are on the same drive.
++    This check is only relevant on Windows,
++    since the concept of drives only exists on Windows.
++    """
++    if platform.system() != "Windows":
++        return True
++
++    path1_drive = pathlib.Path(path1).resolve().drive
++    path2_drive = pathlib.Path(path2).resolve().drive
++    return path1_drive == path2_drive
++
++
+ # TODO(hugh): Deprecate version here and use wandb/sdk/lib/paths.py
+ def to_forward_slash_path(path: str) -> str:
+     if platform.system() == "Windows":

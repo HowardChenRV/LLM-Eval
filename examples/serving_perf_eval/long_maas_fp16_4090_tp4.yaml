@@ -1,0 +1,24 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: http://if-dad3rjj52mjnk7xz-service:80/v1/chat/completions
+model: qwen1.5-14b-chat
+tokenizer: /mnt/public/Qwen_Qwen1.5-14B-Chat
+
+# Dataset config
+dataset_name: local
+dataset_path: /mnt/chenyonghua/long_bench-qwen2-8k_32k.json
+num_prompts: 1000
+
+# Generation config
+temperature: 0.0
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 1
+  - 2
+  - 4
+request_rate_list: 
+  - -1
+save_data: True

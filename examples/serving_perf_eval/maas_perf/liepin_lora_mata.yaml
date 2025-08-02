@@ -1,0 +1,12 @@
+tester: chenyonghua
+hardware: A800-80G
+hardware_num: 5
+model: Qwen2.5-7B-Instruct_Lora
+quantization_method: default
+model_source: OPEN
+framework: alioth-nvidia
+framework_version: v0.2.3_for_rank256_lora
+test_source: TEST
+# other labels
+cluster: 5 instance
+

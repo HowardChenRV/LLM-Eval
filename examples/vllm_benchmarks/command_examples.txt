@@ -1,0 +1,35 @@
+# ollama
+python benchmark_serving.py \
+    --backend ollama \
+    --host 127.0.0.1 \
+    --port 8080 \
+    --endpoint /api/chat \
+    --dataset-name custom \
+    --dataset-path ./custom_dataset.jsonl \
+    --custom-output-len 128 \
+    --max-concurrency 1 \
+    --model qwen2.5-32b-instruct \
+    --tokenizer ./Qwen2.5-7B-Instruct \
+    --num-prompts 10 \
+    --save-result \
+    --save-detailed \
+    
+python benchmark_serving.py --backend ollama --host 127.0.0.1 --port 8080 --endpoint "/api/chat" --dataset-name custom --dataset-path "./custom_dataset.jsonl" --custom-output-len 128 --max-concurrency 1 --model "qwen2.5-32b-instruct" --tokenizer "./Qwen2.5-7B-Instruct" --num-prompts 10 --save-result --save-detailed
+
+# mizar
+python benchmark_serving.py \
+    --backend mizar \
+    --host 127.0.0.1 \
+    --port 8080 \
+    --endpoint /v1/chat/completions \
+    --dataset-name custom \
+    --dataset-path ./custom_dataset.jsonl \
+    --custom-output-len 128 \
+    --max-concurrency 1 \
+    --model qwen2.5-32b-instruct \
+    --tokenizer ./Qwen2.5-7B-Instruct \
+    --num-prompts 10 \
+    --save-result \
+    --save-detailed \
+
+python benchmark_serving.py --backend mizar --host 127.0.0.1 --port 8080 --endpoint "/v1/chat/completions" --dataset-name custom --dataset-path "./custom_dataset.jsonl" --custom-output-len 128 --max-concurrency 1 --model "qwen2.5-32b-instruct" --tokenizer "./Qwen2.5-7B-Instruct" --num-prompts 10 --save-result --save-detailed

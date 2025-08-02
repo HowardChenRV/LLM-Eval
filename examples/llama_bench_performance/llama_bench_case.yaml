@@ -1,0 +1,23 @@
+test_case:
+  model_list:
+    - model_name: Qwen2.5-1.5B-Instruct
+      quantization_method: Q4_0
+      model_path: \\LAPTOP-RJ6A3U9I\aipc_public\model\qwen2-1.5b\qwen25-1.5b-instruct-q4_0.gguf
+    - model_name: Qwen2.5-3B-Instruct
+      quantization_method: Q4_0
+      model_path: \\LAPTOP-RJ6A3U9I\aipc_public\model\qwen2-3b\Qwen2.5-3B-Instruct-q4_0.gguf
+  prompt_tokens: 64,128
+  gen_tokens: 32,64
+
+metrics:
+  kafka:
+    host: 8.140.201.231
+    port: 9094
+
+logging:
+  level: INFO
+  file_path: llama_bench_test_log
+  format: "%(asctime)s [%(levelname)s] - %(message)s - %(filename)s:%(lineno)d"
+
+meta_info:
+  tester: CI/CD

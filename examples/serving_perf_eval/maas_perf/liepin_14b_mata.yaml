@@ -1,0 +1,12 @@
+tester: chenyonghua
+hardware: RTX4090 (AD102)-48G
+hardware_num: 1
+model: Qwen2.5-14B-Instruct
+quantization_method: default
+model_source: OPEN
+framework: vllm-maas
+framework_version: v0.8.5.release.v0
+test_source: TEST
+# other labels
+cluster: 1 instance
+

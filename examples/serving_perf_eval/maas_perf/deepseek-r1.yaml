@@ -1,0 +1,27 @@
+benchmark_name: serving_perf_eval
+# Inference server config 
+backend: MAAS
+url: https://cloud.llm-ai.com/maas/deepseek-r1/nvidia/chat/completions
+model: deepseek-r1
+tokenizer: /Users/howardchen/DeepSeek-R1
+api_key: sk-c7ano2vnaszd6hzt
+
+# Dataset config
+dataset_name: resume_screening
+num_prompts: 500
+
+# Generation config
+temperature: 0.0
+ignore_eos: False
+
+# Perf test config
+perf_test_type: MULTIPLE
+concurrency_list:
+  - 240
+  # - 320
+  # - 400
+  # - 480
+  # - 640
+request_rate_list: 
+  - -1
+save_data: True

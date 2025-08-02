@@ -1,0 +1,27 @@
+# benchmark参数（详见命令行）
+port: 8060
+model: 请填写具体的tokenizer目录
+warmup_times: 1
+repetition: 3
+
+# 评测信息参数，不影响任何benchmark逻辑，仅for数据上报，根据实际修改。
+test_meta:
+  # 测试人员、测试源
+  tester: chenyonghua
+  test_source: TEST
+  # 模型信息
+  model: Qwen2-7B-Instruct
+  # quantization_method: IA_Q4_1
+  # quantization_method: Q4_1
+  quantization_method: IA_Q4_0
+  # quantization_method: Q4_0
+  # spectype: default
+  spectype: lookaheadplus
+  # AIPC硬件规格
+  gpu_manufacturer: AMD
+  gpu_architecture: Strix Point
+  cpu_model: AMD RYZEN AI 9 365
+  gpu_model: AMD Radeon 890M
+  # 推理引擎软件版本
+  framework: lc
+  framework_version: c0c416dd18ba444cf4ff812b04bcae3108a7e649
