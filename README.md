@@ -33,6 +33,63 @@
    llm-eval lenovo_perf_eval -h
    ```
 
+## Project Modules
+
+This project contains several modules for evaluating different aspects of LLM performance:
+
+### Serving Performance Evaluation (serving_perf_eval)
+
+Benchmark tool designed to evaluate the performance of Large Language Model (LLM) inference services. It supports multiple backends (OpenAI, VLLM, MAAS) and allows testing with various datasets.
+
+For detailed information, please refer to [llm_eval/benchmarks/serving_perf_eval/README.md](llm_eval/benchmarks/serving_perf_eval/README.md).
+
+### Lenovo Performance Evaluation (lenovo_perf_eval)
+
+Edge (AIPC) LLM performance evaluation specifically for Lenovo demo servers.
+
+Quick execution:
+```shell
+# Execute by modifying test parameters via command line
+llm-eval lenovo_perf_eval --env production --port 8060 --model {tokenizer directory} --warmup-times 1 --repetition 3 --output-prefix {test report naming}
+# Execute by modifying test parameters via yaml configuration
+llm-eval lenovo_perf_eval --env production --use-yaml --case-path examples/edge_aipc_eval/Qwen2.5-1.5B-Instruct.yaml
+```
+
+### llama-bench Performance Testing (llama_bench_performance)
+
+Automated testing tool for running llama-bench performance tests and collecting results. It supports multi-model test configurations and sends test results to Kafka for centralized statistics and analysis.
+
+For detailed information, please refer to [examples/llama_bench_performance/README.md](examples/llama_bench_performance/README.md).
+
+### Base Evaluation (base_eval)
+
+Cluster basic performance evaluation including GEMM, MEMCPY, P2P, NCCL, GPFS, and other tests.
+
+For detailed information, please refer to [examples/base_eval/README.md](examples/base_eval/README.md).
+
+### Data Platform (data_platform)
+
+For storing and processing various test data, displaying test processes and results.
+
+Environment startup:
+```bash
+cd docker
+docker-compose up -d
+```
+
+Middleware addresses:
+
+| **Middleware**    | **Access Address**           | **Username/Password**  | **Remarks**              |
+|-------------------|------------------------------|------------------------|--------------------------|
+| Kafka             | localhost:9094               |                        |                          |
+| Kafka-UI          | http://localhost:8080/       |                        | Kafka Web Admin Console  |
+| MongoDB           | localhost:27017              | admin/admin            |                          |
+| Mongo Express     | http://localhost:8081/       |                        | Mongo Web Admin Console  |
+| InfluxDB          | http://localhost:8086/       |                        |                          |
+| Chronograf        | http://localhost:8888/       |                        | InfluxDB Visualization Plugin |
+| Grafana           | http://localhost:3000/       | admin/admin            |                          |
+| Apache NiFi       | https://localhost:8443/nifi/ | admin/a12345678910     | Data ETL Tool            |
+
 ## Windows EXE Packaging
 
 To package the application as a Windows executable:
