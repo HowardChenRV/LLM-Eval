@@ -2,11 +2,11 @@ import PyInstaller.__main__
 import os
 
 def build_exe():
-    # 定义打包参数
+    # Define packaging parameters
     params = [
         '--name=llm-eval',
         '--onefile',
-        '--console',  # 替换--windowed为--console以支持命令行
+        '--console',  # Replace --windowed with --console to support command line
         '--add-data=llm_eval;llm_eval',
         '--add-data=requirements;requirements',
         '--hidden-import=llm_eval.cli.serving_perf_eval',
@@ -38,7 +38,7 @@ def build_exe():
         'llm_eval/cli/main.py'
     ]
     
-    # 执行打包
+    # Execute packaging
     PyInstaller.__main__.run(params)
 
 if __name__ == "__main__":

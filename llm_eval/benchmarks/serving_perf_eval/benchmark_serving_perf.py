@@ -57,7 +57,7 @@ async def request_filler_worker(
         logging.info(f"Initialize dataset successed. {dataset.dataset}")
         # Parse dataset to request
         if isinstance(dataset, CustomBodyDataset):
-            # 自定义数据集，整个body都替换
+            # Custom dataset, the whole body will be replaced
             logging.info("Using CustomBodyDataset, the whole body will be replaced. And the args you set in extra_args will not be effective.")
             for req_data in dataset.req_generator(num_requests=cfg.benchmark.num_prompts):
                 request_input = api.create_request_input(**cfg.benchmark, **cfg.extra_args)
@@ -66,7 +66,7 @@ async def request_filler_worker(
                 await request_queue.put(request_input)
                 total_count += 1
         else:
-            # local数据集或者其他数据集
+            # Local dataset or other datasets
             for perf_data in dataset.perf_req_generator(num_requests=cfg.benchmark.num_prompts, tokenizer=api.tokenizer):
                 request_input = api.create_request_input(**cfg.benchmark, **cfg.extra_args)
                 request_input.idx = perf_data.idx
@@ -345,7 +345,7 @@ async def metrics_collector_worker(
     # sort result msg before save result_json, so you can use result_json check details
     generated_texts.sort(key=lambda x: x[0])
     reasoning_texts.sort(key=lambda x: x[0])
-    # process_metrics_list.sort(key=lambda x: x[1].end_time)    # 按请求结束时间排序，用于判断请求优先级
+    # process_metrics_list.sort(key=lambda x: x[1].end_time)    # Sort by request end time to determine request priority
     process_metrics_list.sort(key=lambda x: x[0])
     status_codes.sort(key=lambda x: x[0])
     error_msgs.sort(key=lambda x: x[0])

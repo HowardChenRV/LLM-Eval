@@ -5,9 +5,9 @@ from .models import TestType
 
 def generate_task_id(test_type: TestType) -> str:
     """
-    生成任务ID（暂定为UUID v4）
-    :param test_type: 测试类型
-    :return: 任务ID字符串
+    Generate task ID (UUID v4)
+    :param test_type: Test type
+    :return: Task ID string
     """
     _ = test_type
     return str(uuid.uuid4())

@@ -21,9 +21,9 @@ def save_result_to_excel(
     benchmark = cfg.benchmark
     test_meta = cfg.test_meta
     dynamic_cols = [
-        "芯片规格", "模型", "软件框架", "集群规格", "数据集", "请求总量",
-        "请求速率", "请求成功率(%)", "审核命中", "并发数", "输入总token量", "输出总token量", "思维链总token量", "总耗时(s)",
-        "总请求吞吐(requests/s)", "总输入吞吐(tokens/s)", "总输出吞吐(tokens/s)",
+        "Hardware Spec", "Model", "Software Framework", "Cluster Spec", "Dataset", "Total Requests",
+        "Request Rate", "Request Success Rate(%)", "Audit Hits", "Concurrency", "Total Input Tokens", "Total Output Tokens", "Total Reasoning Tokens", "Total Duration(s)",
+        "Total Request Throughput(requests/s)", "Total Input Throughput(tokens/s)", "Total Output Throughput(tokens/s)",
         "TTFT_avg(ms)", "TPOT_avg(ms)", "ITL_avg(ms)", "E2EL_avg(ms)",
         "TTFT_p50(ms)", "TPOT_p50(ms)", "ITL_p50(ms)", "E2EL_p50(ms)",
         "TTFT_p90(ms)", "TPOT_p90(ms)", "ITL_p90(ms)", "E2EL_p90(ms)",
@@ -34,23 +34,23 @@ def save_result_to_excel(
     result_pd = pd.DataFrame(columns=dynamic_cols)
     for tags, metrics in result_list:
         pd_data = dict()
-        pd_data["芯片规格"] = f"{getattr(test_meta, 'hardware', 'unknow')} x {getattr(test_meta, 'hardware_num', 'unknow')}"
-        pd_data["模型"] = f"{getattr(test_meta, 'model', 'unknow')} - {getattr(test_meta, 'quantization_method', 'unknow')}"
-        pd_data["软件框架"] = f"{getattr(test_meta, 'framework', 'unknow')} {getattr(test_meta, 'framework_version', 'unknow')}"
-        pd_data["集群规格"] = getattr(test_meta, 'cluster', 'unknow')
-        pd_data["数据集"] = tags.dataset
-        pd_data["请求总量"] = tags.request_num
-        pd_data["请求速率"] = "串行" if float(tags.request_rate) == -1 else str(tags.request_rate)
-        pd_data["请求成功率(%)"] = round(metrics.completed / tags.request_num * 100., 2)
-        pd_data["审核命中"] = metrics.audit_hit
-        pd_data["并发数"] = tags.concurrency
-        pd_data["输入总token量"] = metrics.total_input
-        pd_data["输出总token量"] = metrics.total_output
-        pd_data["思维链总token量"] = metrics.total_resoning_tokens
-        pd_data["总耗时(s)"] = round(metrics.duration, 2)
-        pd_data["总请求吞吐(requests/s)"] = round(metrics.request_throughput, 2)
-        pd_data["总输入吞吐(tokens/s)"] = round(metrics.input_throughput, 2)
-        pd_data["总输出吞吐(tokens/s)"] = round(metrics.output_throughput, 2)
+        pd_data["Hardware Spec"] = f"{getattr(test_meta, 'hardware', 'unknow')} x {getattr(test_meta, 'hardware_num', 'unknow')}"
+        pd_data["Model"] = f"{getattr(test_meta, 'model', 'unknow')} - {getattr(test_meta, 'quantization_method', 'unknow')}"
+        pd_data["Software Framework"] = f"{getattr(test_meta, 'framework', 'unknow')} {getattr(test_meta, 'framework_version', 'unknow')}"
+        pd_data["Cluster Spec"] = getattr(test_meta, 'cluster', 'unknow')
+        pd_data["Dataset"] = tags.dataset
+        pd_data["Total Requests"] = tags.request_num
+        pd_data["Request Rate"] = "Serial" if float(tags.request_rate) == -1 else str(tags.request_rate)
+        pd_data["Request Success Rate(%)"] = round(metrics.completed / tags.request_num * 100., 2)
+        pd_data["Audit Hits"] = metrics.audit_hit
+        pd_data["Concurrency"] = tags.concurrency
+        pd_data["Total Input Tokens"] = metrics.total_input
+        pd_data["Total Output Tokens"] = metrics.total_output
+        pd_data["Total Reasoning Tokens"] = metrics.total_resoning_tokens
+        pd_data["Total Duration(s)"] = round(metrics.duration, 2)
+        pd_data["Total Request Throughput(requests/s)"] = round(metrics.request_throughput, 2)
+        pd_data["Total Input Throughput(tokens/s)"] = round(metrics.input_throughput, 2)
+        pd_data["Total Output Throughput(tokens/s)"] = round(metrics.output_throughput, 2)
         
         pd_data["TTFT_avg(ms)"] = round(metrics.mean_ttft_ms, 2)
         pd_data["TPOT_avg(ms)"] = round(metrics.mean_tpot_ms, 2)

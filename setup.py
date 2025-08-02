@@ -119,10 +119,10 @@ def do_setup():
         'test': 'requirements/test.txt',
     }
 
-    # 直接通过列表合并所有的依赖
+    # Directly merge all dependencies through the list
     extra_requires = {key: parse_requirements(file) for key, file in extra_requirements_files.items()}
 
-    # 合并所有依赖
+    # Merge all dependencies
     all_requires = install_requires + sum(extra_requires.values(), [])
     extra_requires['all'] = all_requires
     

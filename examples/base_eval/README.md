@@ -1,29 +1,29 @@
-# 集群基础性能评测
+# Cluster Basic Performance Evaluation
 
-## 运行方式
+## Running Method
 
-### 前置操作
+### Prerequisites
 
-- 1. 编译C共享库
+- 1. Compile C shared library
 
 ```bash
 cd sys_eval/csrc && make build
 ```
 
-- 2. 安装打印结果依赖项
+- 2. Install dependencies for printing results
 
 ```bash
 pip install tabulate
 ```
 
-### 单机执行
+### Single Machine Execution
 
 ```bash
 export PYTHONPATH=${path-to-LLM-Eval}:$PYTHONPATH
 torchrun --nproc_per_node 8 --nnodes 1 --node_rank 0 --master_addr localhost --master_port 6000 sys_common_bench.py
 ```
 
-### 云平台执行
+### Cloud Platform Execution
 
 ```bash
 export GPUS_PER_NODE=8
@@ -31,13 +31,13 @@ export BASE_PATH=/mnt/public  # parent path of LLM-Eval
 bash ${path-to-LLM-Eval}/examples/base_eval/run_nvidia_dist.sh
 ```
 
-测试结果将汇总到rank0机器上打印。
+Test results will be aggregated and printed on the rank0 machine.
 
-## 评测项
+## Evaluation Items
 
 ### GEMM
 
-用于测试加速卡算力，测试完成后结果汇总至rank0，测试结果示例如下：
+Used to test accelerator computing power. After testing, results are aggregated to rank0. Example test results are as follows:
 
 Results: (TFLOPS)
 |    |   16384x8192x1280-bf16 |   16384x8192x1280-fp16 |   16384x1024x8192-bf16 |   16384x1024x8192-fp16 |   8192x8192x8192-bf16 |   8192x8192x8192-fp16 |
@@ -53,7 +53,7 @@ Results: (TFLOPS)
 
 ### MEMCPY
 
-用于测试加速卡显存带宽，以及D2H、H2D带宽。测试结果示例如下：
+Used to test accelerator memory bandwidth, as well as D2H and H2D bandwidth. Example test results are as follows:
 
 Results: (GB/s)
 |    |   d2h-128MB |   h2d-128MB |   d2d-128MB |   d2h-512MB |   h2d-512MB |   d2d-512MB |   d2h-1024MB |   h2d-1024MB |   d2d-1024MB |
@@ -69,7 +69,7 @@ Results: (GB/s)
 
 ### P2P
 
-用于测试同一节点内加速卡间P2P通信带宽和延迟。测试结果示例如下：
+Used to test P2P communication bandwidth and latency between accelerators within the same node. Example test results are as follows:
 
 Results:
 Unidirectional Bandwidth Matrix (GB/s): size=32MB
@@ -110,7 +110,7 @@ Latency Matrix (us): size=32MB
 
 ### NCCL
 
-用于测试集群nccl集合通信带宽。测试结果示例如下：
+Used to test cluster NCCL collective communication bandwidth. Example test results are as follows:
 
 Results: (GB/s)
 |   ALL_REDUCE-1024MB |   ALL_GATHER-1024MB |   ALL_TO_ALL-1024MB |
@@ -119,7 +119,7 @@ Results: (GB/s)
 
 ### GPFS
 
-用于测试高性能共享存储的读写性能，测试采用`torch.save()`和`torch.load()`算子同步读写共享存储路径下文件到GPU。测试结果示例如下：
+Used to test high-performance shared storage read/write performance. Testing uses `torch.save()` and `torch.load()` operators to synchronously read/write files to GPU from shared storage paths. Example test results are as follows:
 
 Results: (GB/s)
 |   write-128MB |   read-128MB |   write-512MB |   read-512MB |   write-1024MB |   read-1024MB |
@@ -129,7 +129,7 @@ Results: (GB/s)
 
 ### nccl_bad_nodes.sh
 
-用于快速排查系统通信慢节点，测试采用相邻节点两两组合，然后换一侧继续两两组合，结合两次结果对比定位慢节点位置。测试结果示例如下：
+Used to quickly identify slow nodes in system communication. Testing uses adjacent nodes paired together, then switches one side to continue pairing, and locates slow node positions by comparing results from both tests. Example test results are as follows:
 
 Results: (GB/s)
 |    |   ALLREDUCE-1 |   ALLREDUCE-2 |
@@ -139,13 +139,12 @@ Results: (GB/s)
 |  2 |         18.95 |         18.92 |
 |  3 |         18.95 |         26.82 |
 
-待解决问题：
+Pending Issues:
 
-- 1. 如果存在坏节点，暂时无法处理。
+- 1. If bad nodes exist, they cannot be handled temporarily.
 
-- 2. 语法目前只在NVIDIA上跑通，已知METAX卡暂时不支持相关接口。
+- 2. Syntax currently only works on NVIDIA, and METAX cards are known to not support related interfaces.
 
-## 常见问题
+## Common Issues
 
-- 1. timeout机制不生效：基础测试可能由于系统问题或者用例引入死锁导致hang住，理论上需要引入timeout机制，但是当前设计的`sys_eval/utils/timer.py`在少数情况下无法起作用，尚未排查原因。
-
+- 1. Timeout mechanism not effective: Basic tests may hang due to system issues or deadlocks introduced by test cases. Theoretically, a timeout mechanism is needed, but the current design of `sys_eval/utils/timer.py` does not work in some cases, and the cause has not been investigated yet.

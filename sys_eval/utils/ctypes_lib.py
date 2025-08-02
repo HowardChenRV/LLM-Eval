@@ -63,7 +63,7 @@ class MemcpyBandwidth:
     
     def d2d_transfer(self, mem_size: int, warmups: int, repeats: int) -> float:
         return self.funcs["testDeviceToDeviceTransfer"](mem_size, warmups, repeats)
-        # TODO: 如何捕获OOM异常
+        # TODO: How to cature OOM
 
 
 class P2PBandwidthLatency:

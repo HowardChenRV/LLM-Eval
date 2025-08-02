@@ -17,8 +17,8 @@ from sys_eval.bench.bench_core import BenchmarkBase
 from sys_eval.utils.runtime_driver import CudaDriver
 
 
-# 思路：节点两两组合，然后错位两两组合，最后汇总所有节点的两次结果
-#      执行 256MB 的 ALLREDUCE 操作
+# Approach: Pair nodes together, then offset pair nodes, finally aggregate results from all nodes twice
+#           Execute 256MB ALLREDUCE operation
 
 class NCCLBadNodesBench(BenchmarkBase):
     def __init__(self, device="cuda"):
@@ -54,8 +54,8 @@ class NCCLBadNodesBench(BenchmarkBase):
         torch.cuda.synchronize()
         dist.barrier()
 
-        # 两两组合 例如: 0-1, 2-3, 4-5, ...
-        # 如果为节点总数为单数，最后一个节点不参与组合
+        # Pair combinations e.g.: 0-1, 2-3, 4-5, ...
+        # If node count is odd, the last node does not participate in combination
         group_ranks = []
         for i in range(0, self.node_count - 1, 2):
             group_ranks.append([i * self.device_count + j for j in range(self.device_count * 2)])
@@ -82,8 +82,8 @@ class NCCLBadNodesBench(BenchmarkBase):
 
         dist.barrier()
         test_tensor = torch.randn(tensor_length, device=self.device)
-        # 进行第二次测试
-        # 两两错位组合 例如: 1-2, 3-4, ..., n-0
+        # Perform second test
+        # Offset pair combinations e.g.: 1-2, 3-4, ..., n-0
         group_ranks = []
         for i in range(1, self.node_count - 1, 2):
             group_ranks.append([i * self.device_count + j for j in range(self.device_count * 2)])
@@ -122,7 +122,7 @@ class NCCLBadNodesBench(BenchmarkBase):
     def print_result(self):
         from tabulate import tabulate
 
-        # 集合每个节点local_rank0的结果
+        # Aggregate results from each node's local_rank0
         world_size = dist.get_world_size()
         group_rank = [i for i in range(world_size) if i % self.device_count == 0]
         group = dist.new_group(group_rank)

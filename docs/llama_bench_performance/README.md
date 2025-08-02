@@ -1,3 +1,3 @@
-# llama-bench-test 工具
+# llama-bench-test Tool
 
-请查看 [examples/llama_bench_performance/README.md](../../examples/llama_bench_performance/README.md) 获取详细信息。
+Please refer to [examples/llama_bench_performance/README.md](../../examples/llama_bench_performance/README.md) for detailed information.

@@ -1,33 +1,33 @@
-# llama-bench-test 工具
+# llama-bench-test Tool
 
-## 概述
+## Overview
 
-llama-bench-test 是一个自动化测试工具，用于运行 llama-bench 性能测试并收集结果。它支持多模型测试配置，并将测试结果发送到 Kafka 进行集中统计和分析。
+llama-bench-test is an automated testing tool for running llama-bench performance tests and collecting results. It supports multi-model test configurations and sends test results to Kafka for centralized statistics and analysis.
 
-## 功能特点
+## Features
 
-- 支持从 YAML 配置文件加载测试用例
-- 可同时测试多个不同模型
-- 实时输出测试日志和结果
-- 测试结果自动上报到 Kafka
-- 详细的错误处理和日志记录
-- 支持 Git 分支和提交信息记录
+- Support loading test cases from YAML configuration files
+- Can test multiple different models simultaneously
+- Real-time output of test logs and results
+- Test results automatically reported to Kafka
+- Detailed error handling and logging
+- Support for recording Git branch and commit information
 
-## 使用说明
+## Usage Instructions
 
-### 运行环境
-windows AIPC，参考文档 xxx
+### Runtime Environment
+Windows AIPC, refer to document xxx
 
-### 依赖安装
+### Dependency Installation
 
 ```bash
-# 依赖 python 3.10～3.12
+# Requires Python 3.10~3.12
 pip install -r requirement.txt
 ```
 
-### 配置文件
+### Configuration File
 
-配置文件 `llama_bench_case.yaml` 示例：
+Configuration file `llama_bench_case.yaml` example:
 
 ```yaml
 test_case:
@@ -38,31 +38,31 @@ test_case:
     - model_name: Qwen2.5-3B-Instruct
       quantization_method: Q4_0
       model_path: \\path\to\model.gguf
-  prompt_tokens: "64,128"  # 输入token数量
-  gen_tokens: "32,64"      # 生成token数量
+  prompt_tokens: "64,128"  # Number of input tokens
+  gen_tokens: "32,64"      # Number of generated tokens
 
 metrics:
   kafka:
-    host: 8.140.201.231    # Kafka服务器地址
-    port: 9094             # Kafka端口
+    host: 8.140.201.231    # Kafka server address
+    port: 9094             # Kafka port
 
 logging:
-  level: INFO              # 日志级别
-  file_path: llama_bench_test_log  # 日志目录
+  level: INFO              # Log level
+  file_path: llama_bench_test_log  # Log directory
   format: "%(asctime)s [%(levelname)s] - %(message)s - %(filename)s:%(lineno)d"
 
 meta_info:
-  tester: CI/CD            # 测试者信息
+  tester: CI/CD            # Tester information
 ```
 
-### 运行测试
+### Running Tests
 
-基本用法：
+Basic usage:
 ```bash
 python auto_run_llama_bench.py --llama-bench-path path/to/llama-bench.exe
 ```
 
-带Git信息运行：
+Running with Git information:
 ```bash
 python auto_run_llama_bench.py \
   --llama-bench-path path/to/llama-bench.exe \
@@ -70,27 +70,27 @@ python auto_run_llama_bench.py \
   --commit abc123
 ```
 
-### 参数说明
+### Parameter Description
 
-| 参数 | 说明 | 默认值 |
-|------|------|--------|
-| --llama-bench-path | llama-bench可执行文件路径 | llama-bench.exe |
-| --branch | Git分支名称 | None |
-| --commit | Git提交哈希 | None |
+| Parameter | Description | Default Value |
+|-----------|-------------|---------------|
+| --llama-bench-path | Path to llama-bench executable | llama-bench.exe |
+| --branch | Git branch name | None |
+| --commit | Git commit hash | None |
 
-## 日志说明
+## Log Description
 
-测试日志会保存在 `llama_bench_test_log` 目录下，文件名格式为 `runtime_YYYYMMDD_HHMMSS.log`。
+Test logs will be saved in the `llama_bench_test_log` directory, with filenames in the format `runtime_YYYYMMDD_HHMMSS.log`.
 
-日志包含以下信息：
-- 测试开始/结束时间
-- 每个模型的测试结果
-- 错误信息（如果有）
-- 性能数据
+Logs contain the following information:
+- Test start/end time
+- Test results for each model
+- Error information (if any)
+- Performance data
 
-## 注意事项
+## Notes
 
-1. 确保模型文件路径可访问
-2. Kafka服务器需要提前配置好
-3. 测试时间可能较长，建议在性能稳定的环境中运行
-4. 日志目录会自动创建，无需手动创建
+1. Ensure model file paths are accessible
+2. Kafka server needs to be pre-configured
+3. Test duration may be long, it is recommended to run in a performance-stable environment
+4. Log directory will be automatically created, no manual creation required

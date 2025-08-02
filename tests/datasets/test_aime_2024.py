@@ -2,7 +2,7 @@ from llm_eval.datasets.aime_2024 import AIME2024
 import json
 
 def save_dataset_as_jsonl(dataset, file_path: str):
-    """将 Hugging Face 的 Dataset 对象保存为 jsonl 文件"""
+    """Save Hugging Face Dataset object as jsonl file"""
     with open(file_path, 'w', encoding='utf-8') as f:
         for example in dataset:
             json.dump(example, f, ensure_ascii=False)

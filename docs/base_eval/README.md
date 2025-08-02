@@ -1,3 +1,3 @@
-# 集群基础性能评测
+# Cluster Basic Performance Evaluation
 
-请查看 [examples/base_eval/README.md](../../examples/base_eval/README.md) 获取详细信息。
+Please refer to [examples/base_eval/README.md](../../examples/base_eval/README.md) for detailed information.

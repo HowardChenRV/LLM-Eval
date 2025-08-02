@@ -251,7 +251,7 @@ def run_benchmark(config: Dict, llama_bench_path: str) -> bool:
         except Exception as e:
             success = False
             logging.error(f"Benchmark FAILED for model {model.get('model_name', 'unknown')}: {str(e)}")
-            logging.error(traceback.format_exc())  # 确保完整堆栈被记录
+            logging.error(traceback.format_exc())  # Ensure complete stack trace is logged
     return success
 
 
@@ -266,14 +266,14 @@ if __name__ == "__main__":
                         help='Git commit hash (default: None)')
         args = parser.parse_args()
         
-        # 初始化配置
+        # Initialize configuration
         config = load_yaml_config("llama_bench_case.yaml")
         config["meta_info"].update({
             "branch": args.branch or "",
             "commit": args.commit or ""
         })
         
-        # 初始化日志
+        # Initialize logging
         os.makedirs(config["logging"]["file_path"], exist_ok=True)
         log_file = os.path.join(
             config["logging"]["file_path"], 
@@ -289,7 +289,7 @@ if __name__ == "__main__":
             ]
         )
         logging.getLogger("kafka").setLevel(logging.ERROR)
-        # 执行测试
+        # Execute tests
         all_success = run_benchmark(config, args.llama_bench_path)
         
         if not all_success:

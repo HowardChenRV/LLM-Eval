@@ -27,7 +27,7 @@
 ## Quick Start
    ```shell
    llm-eval -h
-   # LLM servig performance evaluation
+   # LLM serving performance evaluation
    llm-eval serving_perf_eval -h
    # Edge(AIPC) LLM performance evaluation for lenovo-demo server
    llm-eval lenovo_perf_eval -h

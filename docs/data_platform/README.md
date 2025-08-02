@@ -1,29 +1,29 @@
-# 测试数据平台
+# Test Data Platform
 
-针对各种测试数据进行存储和处理，展示测试过程和测试结果
+For storing and processing various test data, displaying test processes and results
 
-## 环境启动
+## Environment Startup
 
-安装docker和docker-compose，启动开发环境
+Install docker and docker-compose, then start the development environment
 
 ```bash
 cd docker
 docker-compose up -d
 ```
 
-## 各中间件地址
+## Middleware Addresses
 
-| **中间件**       | **访问地址**                     | **用户/密码**          | **备注**        |
-|---------------|------------------------------|--------------------|---------------|
-| Kafka         | localhost:9094               |                    |               |
-| Kafka-UI      | http://localhost:8080/       |                    | Kafka Web管理端  |
-| MongoDB       | localhost:27017              | admin/admin        |               |
-| Mongo Express | http://localhost:8081/       |                    | Mongo Web管理端  |
-| InfluxDB      | http://localhost:8086/       |                    |               |
-| Chronograf    | http://localhost:8888/       |                    | InfluxDB可视化插件 |
-| Grafana       | http://localhost:3000/       | admin/admin        |               |
-| Apache NiFi   | https://localhost:8443/nifi/ | admin/a12345678910 | 数据ETL工具       |
+| **Middleware**    | **Access Address**           | **Username/Password**  | **Remarks**              |
+|-------------------|------------------------------|------------------------|--------------------------|
+| Kafka             | localhost:9094               |                        |                          |
+| Kafka-UI          | http://localhost:8080/       |                        | Kafka Web Admin Console  |
+| MongoDB           | localhost:27017              | admin/admin            |                          |
+| Mongo Express     | http://localhost:8081/       |                        | Mongo Web Admin Console  |
+| InfluxDB          | http://localhost:8086/       |                        |                          |
+| Chronograf        | http://localhost:8888/       |                        | InfluxDB Visualization Plugin |
+| Grafana           | http://localhost:3000/       | admin/admin            |                          |
+| Apache NiFi       | https://localhost:8443/nifi/ | admin/a12345678910     | Data ETL Tool            |
 
 ## Python SDK
 
-[Python SDK 使用说明](./python-sdk/README.md)
+[Python SDK Usage Instructions](./python-sdk/README.md)

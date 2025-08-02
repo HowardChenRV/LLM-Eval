@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 class DataClient:
     """
-    数据存储客户端
+    Data storage client
     """
 
     def __init__(self, kafka_server: str = "8.140.201.231:9094"):
@@ -35,12 +35,12 @@ class DataClient:
     @validate_call
     def send_meta_data(self, task_id: str, test_type: TestType, meta_data: object, **kwargs) -> FutureRecordMetadata:
         """
-        发送测试元数据（废弃方法，后续删除）
-        :param task_id: 任务ID
-        :param test_type: 测试类型
-        :param meta_data: 元数据对象
-        :param kwargs: 可选参数，key=callback时，指定处理成功时的回调方法；key=errback时，指定发生错误时的回调方法
-        :return: 异步操作对象
+        Send test metadata (deprecated method, to be removed later)
+        :param task_id: Task ID
+        :param test_type: Test type
+        :param meta_data: Metadata object
+        :param kwargs: Optional parameters, when key=callback, specify the callback method for successful processing; when key=errback, specify the callback method for error handling
+        :return: Asynchronous operation object
         """
         data = {'task_id': task_id, 'test_type': test_type.value, 'meta': meta_data}
         return self._send_data(META_KAFKA_TOPIC, data, kwargs.get('callback', None), kwargs.get('errback', None))
@@ -50,15 +50,15 @@ class DataClient:
                        fields: Dict[str, Union[int, float, str, bool]],
                        tags: Dict[str, str] = None, **kwargs) -> FutureRecordMetadata:
         """
-        发送测试过程数据
-        :param task_id: 任务ID
-        :param test_type: 测试类型
-        :param data_type: 数据类型
-        :param data_time: 数据产生的时间
-        :param fields: 存储实际的数值数据
-        :param tags: 存储元数据信息和标识数据的键值对
-        :param kwargs: 可选参数，key=callback时，指定处理成功时的回调方法；key=errback时，指定发生错误时的回调方法
-        :return: 异步操作对象
+        Send test process data
+        :param task_id: Task ID
+        :param test_type: Test type
+        :param data_type: Data type
+        :param data_time: Time when data was generated
+        :param fields: Store actual numeric data
+        :param tags: Store metadata information and key-value pairs for identifying data
+        :param kwargs: Optional parameters, when key=callback, specify the callback method for successful processing; when key=errback, specify the callback method for error handling
+        :return: Asynchronous operation object
         """
         timestamp = int(data_time.timestamp() * 10 ** 9)
         data = {'task_id': task_id, 'test_type': test_type.value, 'data_type': data_type.value, 'timestamp': timestamp,
@@ -70,11 +70,11 @@ class DataClient:
                             statistic_dict: Dict[str, Union[int, float, str, bool, None]],
                             **kwargs) -> FutureRecordMetadata:
         """
-        发送测试统计数据
-        :param task_id: 任务ID
-        :param test_type: 测试类型
-        :param statistic_dict: 统计数据键值对
-        :param kwargs: 可选参数，key=callback时，指定处理成功时的回调方法；key=errback时，指定发生错误时的回调方法
+        Send test statistics data
+        :param task_id: Task ID
+        :param test_type: Test type
+        :param statistic_dict: Statistical data key-value pairs
+        :param kwargs: Optional parameters, when key=callback, specify the callback method for successful processing; when key=errback, specify the callback method for error handling
         :return:
         """
         timestamp_ms = int(time.time() * 1000)
@@ -85,12 +85,12 @@ class DataClient:
     @validate_call
     def send_scene_data(self, task_id: str, test_type: TestType, scene_data: object, **kwargs) -> FutureRecordMetadata:
         """
-        发送测试场景数据
-        :param task_id: 任务ID
-        :param test_type: 测试类型
-        :param scene_data: 测试场景数据对象
-        :param kwargs: 可选参数，key=callback时，指定处理成功时的回调方法；key=errback时，指定发生错误时的回调方法
-        :return: 异步操作对象
+        Send test scenario data
+        :param task_id: Task ID
+        :param test_type: Test type
+        :param scene_data: Test scenario data object
+        :param kwargs: Optional parameters, when key=callback, specify the callback method for successful processing; when key=errback, specify the callback method for error handling
+        :return: Asynchronous operation object
         """
         data = {'task_id': task_id, 'test_type': test_type.value, 'scene': scene_data}
         return self._send_data(SCENE_KAFKA_TOPIC, data, kwargs.get('callback', None), kwargs.get('errback', None))
@@ -99,12 +99,12 @@ class DataClient:
     def send_conclusion_data(self, task_id: str, test_type: TestType, conclusion_data: object,
                              **kwargs) -> FutureRecordMetadata:
         """
-        发送测试结论数据
-        :param task_id: 任务ID
-        :param test_type: 测试类型
-        :param conclusion_data: 元数据对象
-        :param kwargs: 可选参数，key=callback时，指定处理成功时的回调方法；key=errback时，指定发生错误时的回调方法
-        :return: 异步操作对象
+        Send test conclusion data
+        :param task_id: Task ID
+        :param test_type: Test type
+        :param conclusion_data: Metadata object
+        :param kwargs: Optional parameters, when key=callback, specify the callback method for successful processing; when key=errback, specify the callback method for error handling
+        :return: Asynchronous operation object
         """
         data = {'task_id': task_id, 'test_type': test_type.value, 'conclusion': conclusion_data}
         return self._send_data(CONCLUSION_KAFKA_TOPIC, data, kwargs.get('callback', None), kwargs.get('errback', None))
@@ -112,21 +112,21 @@ class DataClient:
     @validate_call
     def send_evaluation_result(self, task_id: str, evaluation_result: EvaluationResult) -> FutureRecordMetadata:
         """
-        发送模型效果评估的结果数据
-        :param task_id: 任务ID
-        :param evaluation_result: 评估结果对象
-        :return: FutureRecordMetadata 异步处理的结果
+        Send model effect evaluation result data
+        :param task_id: Task ID
+        :param evaluation_result: Evaluation result object
+        :return: FutureRecordMetadata Asynchronous processing result
         """
         return self.send_statistic_data(task_id, TestType.MODEL_INFERENCE_EVALUATION, asdict(evaluation_result))
 
     def upload_evaluation_detail(self, task_id: str, dataset_name: str, filenames: List[str], expire_day: int = 180) -> \
             Dict[str, str]:
         """
-        上传模型效果评估详情文件
-        :param task_id: 任务ID
-        :param dataset_name: 数据集名称
-        :param filenames: 本地文件路径集合
-        :param expire_day: URL过期天数，默认180天
+        Upload model effect evaluation detail files
+        :param task_id: Task ID
+        :param dataset_name: Dataset name
+        :param filenames: Collection of local file paths
+        :param expire_day: URL expiration days, default 180 days
         """
         now = datetime.now()
         file_urls = {}
@@ -143,10 +143,10 @@ class DataClient:
 
     def download_evaluation_dataset(self, dataset_name: str, version: str, filepath: str):
         """
-        下载指定名称和版本的模型效果评测数据集
-        :param dataset_name: 数据集名称
-        :param version: 数据集版本
-        :param filepath: 本地文件路径
+        Download model effect evaluation dataset with specified name and version
+        :param dataset_name: Dataset name
+        :param version: Dataset version
+        :param filepath: Local file path
         """
         for obj in self._get_evaluation_dataset_iterator(dataset_name, version):
             key = obj.key
@@ -155,10 +155,10 @@ class DataClient:
 
     def upload_evaluation_latest_dataset(self, dataset_name: str, filename: str, meta_data: Dict[str, any]):
         """
-        上传最新版本的评测数据集
-        :param dataset_name: 数据集名称
-        :param filename: 本地文件路径
-        :param meta_data: 元数据dict
+        Upload the latest version of evaluation dataset
+        :param dataset_name: Dataset name
+        :param filename: Local file path
+        :param meta_data: Metadata dict
         """
         self._rename_latest_dataset(dataset_name)
         self._update_evaluation_dataset(dataset_name=dataset_name, version='latest', filename=filename,
@@ -166,17 +166,17 @@ class DataClient:
 
     def download_evaluation_latest_dataset(self, dataset_name: str, filepath: str):
         """
-        下载指定名称下最新的模型效果数据集
-        :param dataset_name: 数据集名称
-        :param filepath:  本地文件路径
+        Download the latest model effect dataset under the specified name
+        :param dataset_name: Dataset name
+        :param filepath: Local file path
         """
         self.download_evaluation_dataset(dataset_name, 'latest', filepath)
 
     def get_evaluation_latest_dataset_version(self, dataset_name: str):
         """
-        获取最新版本评测数据集的版本号
-        :param dataset_name:  数据集名称
-        :return: 版本号
+        Get the version number of the latest evaluation dataset
+        :param dataset_name: Dataset name
+        :return: Version number
         """
         meta_data = self._get_evaluation_dataset_metadata(dataset_name, 'latest')
         if 'version' in meta_data:
@@ -187,12 +187,12 @@ class DataClient:
     def _send_data(self, topic: str, data: object, callback: Callable = None,
                    errback: Callable = None) -> FutureRecordMetadata:
         """
-        发送数据到kafka队列中
-        :param topic: topic名称
-        :param data: 数据内容
-        :param callback: 正常回调
-        :param errback: 异常回调
-        :return: 异步对象
+        Send data to Kafka queue
+        :param topic: Topic name
+        :param data: Data content
+        :param callback: Normal callback
+        :param errback: Exception callback
+        :return: Asynchronous object
         """
         future = self._producer.send(topic, data)
         if callback is not None:

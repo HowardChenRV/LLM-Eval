@@ -3,7 +3,7 @@ import http.client
 import time
 
 def call_api(question, api_key, max_retries=3):
-    """调用 API 并返回响应，支持重试机制，并计算响应时间"""
+    """Call API and return response with retry mechanism and response time calculation"""
     prompt = question + "\nPlease reason step by step, and put your final answer within \\boxed{{}}."
     payload = json.dumps({
         "model": "deepseek-r1-perftest",
@@ -44,7 +44,7 @@ def call_api(question, api_key, max_retries=3):
     return None, None
 
 def process_file(input_file, output_file, api_key):
-    """处理输入文件，并将 API 响应格式化后写入输出文件，计算 token 生成速度"""
+    """Process input file and write formatted API response to output file, calculate token generation speed"""
     total_time = 0
     total_tokens = 0
     
@@ -58,7 +58,7 @@ def process_file(input_file, output_file, api_key):
             api_response, response_time = call_api(question, api_key)
             if not api_response:
                 print(f"API response is None, Skipping entry {index + 1} with ID {id}")
-                continue  # 如果 API 无响应，跳过此条数据
+                continue  # Skip this entry if API has no response
             
             prediction = ""
             total_token_len = 0
@@ -75,7 +75,7 @@ def process_file(input_file, output_file, api_key):
             total_time += response_time if response_time else 0
             total_tokens += total_token_len
             
-            # 只存储当前条目
+            # Store only current entry
             output_entry = {
                 "origin_prompt": [
                     {"role": "HUMAN", "prompt": question}
@@ -88,9 +88,9 @@ def process_file(input_file, output_file, api_key):
                 "token_speed": token_speed
             }
             
-            # 逐行输出，而不是累计整个数据
+            # Output line by line instead of accumulating entire data
             outfile.write(json.dumps(output_entry, ensure_ascii=False) + "\n")
-            outfile.flush()  # 立即写入文件，防止数据丢失
+            outfile.flush()  # Write to file immediately to prevent data loss
             
             print(f"Processed entry {index + 1}, Token Speed: {token_speed:.2f} tokens/sec")
     
