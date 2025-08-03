@@ -67,7 +67,7 @@ For storing and processing various test data, displaying test processes and resu
 
 Environment startup:
 ```bash
-cd docker
+cd docker/data_platform
 docker-compose up -d
 ```
 
