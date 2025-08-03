@@ -61,9 +61,9 @@ Cluster basic performance evaluation including GEMM, MEMCPY, P2P, NCCL, GPFS, an
 
 For detailed information, please refer to [examples/base_eval/README.md](examples/base_eval/README.md).
 
-### Data Platform (data_platform)
+### AI Evaluation Data Platform
 
-For storing and processing various test data, displaying test processes and results.
+For storing and processing various test data, displaying test processes and results. For details about the data storage platform, please refer to [AIEvaluationDataPlatform README](https://github.com/HowardChenRV/past-projects-showcase/blob/main/projects/AIEvaluationDataPlatform/README_EN.md)
 
 Environment startup:
 ```bash
