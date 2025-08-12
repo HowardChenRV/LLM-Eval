@@ -56,7 +56,7 @@ class ServingPerfEvalArgument:
     request_rate: float = float("inf")  # Value of -1 indicates sending requests sequentially.
     request_rate_list: Optional[List[float]] = None  # Only for PerfTestType.multiple
     concurrency_list: Optional[List[int]] = None  # Only for PerfTestType.multiple
-    limit_max_oncurrency: bool = False  # If True, use asyncio.Semaphore to limit the max concurrency.
+    limit_max_concurrency: bool = False  # If True, use asyncio.Semaphore to limit the max concurrency.
     # Save data config
     save_data: bool = False
     result_data_path: str = ""  # Path to save the result data file. If not specified, the data will be saved to cache dir.
@@ -157,7 +157,7 @@ def add_argument(parser: argparse.ArgumentParser):
                         help='List of request rate for multiple tests (e.g. -1,4,8,16,inf)')
     parser.add_argument('--concurrency-list', type=parse_concurrency_list, default=None,
                         help='List of concurrency for multiple tests (e.g. 1,2,3,4,5)')
-    parser.add_argument('--limit-max-oncurrency', action='store_true', help='If set, use asyncio.Semaphore to limit the max concurrency. ')
+    parser.add_argument('--limit-max-concurrency', action='store_true', help='If set, use asyncio.Semaphore to limit the max concurrency. ')
     # Save data config
     parser.add_argument('--save-data', action='store_true', help='Save generate process data to json file.')
     parser.add_argument('--result-data-path', type=str, default='', help='Path to save the result data file. If not specified, the data will be saved to cache dir.')
@@ -207,7 +207,7 @@ class ServingPerfEvalCMD(CLICommand):
                 request_rate=self.args.request_rate,
                 request_rate_list=self.args.request_rate_list,
                 concurrency_list=self.args.concurrency_list,
-                limit_max_oncurrency=self.args.limit_max_oncurrency,
+                limit_max_concurrency=self.args.limit_max_concurrency,
                 save_data=self.args.save_data,
                 result_data_path=self.args.result_data_path,
             )
